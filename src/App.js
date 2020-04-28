@@ -1,0 +1,28 @@
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Home } from './pages/Home';
+import { About } from './pages/About';
+import { Navbar } from './components/Navbar';
+import { AlertProvider } from './context/alert/alertContext';
+import { FirebaseProvider } from './context/firebase/FirebaseContext';
+
+function App() {
+  return (
+    <FirebaseProvider>
+      <AlertProvider>
+        <BrowserRouter>
+          <Navbar />
+          <div className="container mt-5">
+            <Switch>
+              <Route path={'/'} exact component={Home} />
+              <Route path={'/about'} exact component={About} />
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </AlertProvider>
+    </FirebaseProvider>
+
+  );
+}
+
+export default App;
